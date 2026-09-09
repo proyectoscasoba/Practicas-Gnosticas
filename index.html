@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#183b3a" />
+    <meta
+      name="description"
+      content="Prácticas esotéricas gnósticas para la interiorización y la meditación."
+    />
+    <link rel="manifest" href="manifest.json" />
+    <title>Prácticas Esotéricas Gnósticas</title>
+    <style>
+      :root {
+        --ink: #183b3a;
+        --ink-soft: #42615d;
+        --paper: #f4f0e7;
+        --paper-light: #fbfaf6;
+        --saffron: #d18b45;
+        --saffron-dark: #a9652d;
+        --line: #d8d8c9;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--paper);
+        font-family: Georgia, "Times New Roman", serif;
+      }
+      button,
+      input {
+        font: inherit;
+      }
+      button {
+        cursor: pointer;
+      }
+      .hidden {
+        display: none !important;
+      }
+      .shell {
+        min-height: 100vh;
+        overflow: hidden;
+      }
+      .cover {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 32px 20px;
+        background:
+          radial-gradient(
+            circle at 80% 15%,
+            rgba(209, 139, 69, 0.22),
+            transparent 28%
+          ),
+          linear-gradient(125deg, #183b3a 0%, #235252 54%, #527366 100%);
+        color: #fbfaf6;
+        position: relative;
+      }
+      .cover::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0.17;
+        background-image: linear-gradient(
+          30deg,
+          transparent 48%,
+          #d8bb8d 49%,
+          transparent 50%
+        );
+        background-size: 38px 38px;
+        pointer-events: none;
+      }
+      .cover-inner {
+        width: min(100%, 920px);
+        position: relative;
+        z-index: 1;
+      }
+      .eyebrow {
+        margin: 0 0 22px;
+        color: #e4c18b;
+        font:
+          700 0.76rem/1.2 Arial,
+          sans-serif;
+        letter-spacing: 0.17em;
+        text-transform: uppercase;
+      }
+      .cover h1 {
+        max-width: 780px;
+        margin: 0;
+        font-size: clamp(3.2rem, 9vw, 7.5rem);
+        font-weight: 400;
+        line-height: 0.94;
+        letter-spacing: 0;
+      }
+      .cover-copy {
+        max-width: 540px;
+        margin: 30px 0 42px;
+        color: #dce8df;
+        font-size: 1.18rem;
+        line-height: 1.65;
+      }
+      .primary-button,
+      .secondary-button {
+        border: 0;
+        border-radius: 2px;
+        padding: 15px 22px;
+        transition:
+          transform 180ms ease,
+          background 180ms ease,
+          color 180ms ease;
+      }
+      .primary-button {
+        background: var(--saffron);
+        color: #1b302d;
+        font-weight: 700;
+      }
+      .primary-button:hover {
+        background: #e2a45e;
+        transform: translateY(-2px);
+      }
+      .cover-note {
+        margin: 24px 0 0;
+        color: #b9cfca;
+        font:
+          0.84rem/1.5 Arial,
+          sans-serif;
+      }
+      .library {
+        min-height: 100vh;
+        background: var(--paper-light);
+      }
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        max-width: 1180px;
+        margin: auto;
+        padding: 22px 24px;
+      }
+      .brand {
+        color: var(--ink);
+        font-size: 1.2rem;
+        text-decoration: none;
+      }
+      .back-button {
+        border: 0;
+        background: transparent;
+        color: var(--ink-soft);
+        padding: 8px 0;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+      }
+      .library-header {
+        max-width: 1180px;
+        margin: auto;
+        padding: 64px 24px 42px;
+        border-top: 1px solid var(--line);
+      }
+      .library-header h2 {
+        max-width: 750px;
+        margin: 0 0 18px;
+        font-size: clamp(2.4rem, 6vw, 5.4rem);
+        font-weight: 400;
+        line-height: 0.98;
+      }
+      .library-header p {
+        max-width: 620px;
+        margin: 0;
+        color: var(--ink-soft);
+        font-size: 1.08rem;
+        line-height: 1.65;
+      }
+      .practice-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+        gap: 16px;
+        max-width: 1180px;
+        margin: auto;
+        padding: 0 24px 70px;
+      }
+      .practice-card {
+        display: flex;
+        min-height: 250px;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 24px;
+        border: 1px solid var(--line);
+        background: #fffef9;
+        box-shadow: 0 8px 24px rgba(24, 59, 58, 0.05);
+      }
+      .practice-card h3 {
+        margin: 17px 0 10px;
+        font-size: 1.7rem;
+        font-weight: 400;
+      }
+      .practice-card p {
+        margin: 0;
+        color: var(--ink-soft);
+        line-height: 1.55;
+      }
+      .card-actions {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-top: 28px;
+      }
+      .listen-button {
+        flex: 1;
+        border: 0;
+        border-radius: 2px;
+        padding: 12px;
+        background: var(--ink);
+        color: #fff;
+        font-weight: 700;
+      }
+      .listen-button:hover {
+        background: #285f5b;
+      }
+      .download-button {
+        width: 44px;
+        height: 44px;
+        border: 1px solid var(--line);
+        border-radius: 2px;
+        background: transparent;
+        color: var(--ink);
+        font-size: 1.25rem;
+        text-align: center;
+        text-decoration: none;
+        line-height: 42px;
+      }
+      .download-button:hover {
+        border-color: var(--saffron);
+        color: var(--saffron-dark);
+      }
+      .player-view {
+        position: fixed;
+        inset: auto 0 0;
+        z-index: 4;
+        padding: 14px 18px 18px;
+        background: rgba(24, 59, 58, 0.98);
+        color: #fff;
+        box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.18);
+      }
+      .player-inner {
+        display: grid;
+        grid-template-columns: minmax(160px, 1fr) 2fr auto;
+        align-items: center;
+        gap: 20px;
+        max-width: 1180px;
+        margin: auto;
+      }
+      .player-label {
+        min-width: 0;
+      }
+      .player-label strong,
+      .player-label span {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .player-label strong {
+        font-size: 1.1rem;
+        font-weight: 400;
+      }
+      .player-label span {
+        margin-top: 4px;
+        color: #b8d0c9;
+        font:
+          0.78rem Arial,
+          sans-serif;
+      }
+      audio {
+        width: 100%;
+        height: 38px;
+      }
+      .close-player {
+        border: 1px solid #789893;
+        border-radius: 2px;
+        background: transparent;
+        color: #fff;
+        padding: 9px 12px;
+      }
+      .close-player:hover {
+        background: #285f5b;
+      }
+      .back-to-top {
+        position: fixed;
+        right: 22px;
+        bottom: 112px;
+        z-index: 5;
+        width: 44px;
+        height: 44px;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        background: var(--paper-light);
+        color: var(--ink);
+        font-size: 1.4rem;
+        line-height: 1;
+        box-shadow: 0 8px 22px rgba(24, 59, 58, 0.18);
+        transition:
+          transform 180ms ease,
+          background 180ms ease;
+      }
+      .back-to-top:hover {
+        background: var(--saffron);
+        transform: translateY(-3px);
+      }
+      footer {
+        padding: 28px 24px 120px;
+        color: var(--ink-soft);
+        text-align: center;
+        font:
+          0.8rem/1.5 Arial,
+          sans-serif;
+      }
+      @media (max-width: 700px) {
+        .cover {
+          justify-items: start;
+        }
+        .cover h1 {
+          font-size: clamp(3.1rem, 16vw, 5.3rem);
+        }
+        .topbar,
+        .library-header,
+        .practice-grid {
+          padding-left: 18px;
+          padding-right: 18px;
+        }
+        .library-header {
+          padding-top: 44px;
+        }
+        .player-inner {
+          grid-template-columns: 1fr auto;
+          gap: 10px 16px;
+        }
+        .player-inner audio {
+          grid-column: 1 / -1;
+          grid-row: 2;
+        }
+        .back-to-top {
+          right: 16px;
+          bottom: 142px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <section id="cover" class="cover" aria-labelledby="cover-title">
+        <div class="cover-inner">
+          <p class="eyebrow">Un espacio de práctica interior</p>
+          <h1 id="cover-title">Prácticas<br />Esotéricas<br />Gnósticas</h1>
+          <p class="cover-copy">
+            Audios guiados para la interiorización, la integración y la
+            meditación. Entra cuando quieras; cada práctica está abierta para
+            que sigas tu propio ritmo.
+          </p>
+          <button id="enter-button" class="primary-button" type="button">
+            Entrar a las prácticas <span aria-hidden="true">→</span>
+          </button>
+          <p class="cover-note">
+            Disponible sin conexión después de la primera carga.
+          </p>
+        </div>
+      </section>
+
+      <section
+        id="library"
+        class="library hidden"
+        aria-labelledby="library-title"
+      >
+        <nav class="topbar" aria-label="Navegación principal">
+          <a class="brand" href="#cover">PEG</a>
+          <button id="home-button" class="back-button" type="button">
+            ← Volver al inicio
+          </button>
+        </nav>
+        <header class="library-header">
+          <p class="eyebrow">Biblioteca de prácticas</p>
+          <h2 id="library-title">Elige una práctica y permanece presente.</h2>
+          <p>
+            Todos los ejercicios están disponibles desde el comienzo. Puedes
+            repetirlos, detenerlos y retomarlos sin seguir una secuencia.
+          </p>
+        </header>
+        <div id="practice-grid" class="practice-grid" aria-live="polite"></div>
+        <footer>
+          Los audios se guardan en este dispositivo para acompañarte también sin
+          conexión.
+        </footer>
+      </section>
+
+      <aside
+        id="player-view"
+        class="player-view hidden"
+        aria-label="Reproductor de práctica"
+      >
+        <div class="player-inner">
+          <div class="player-label">
+            <strong id="player-title">Práctica</strong>
+            <span id="player-status">Lista para comenzar</span>
+          </div>
+          <audio id="audio-player" controls preload="metadata"></audio>
+          <button id="close-player" class="close-player" type="button">
+            Cerrar
+          </button>
+        </div>
+      </aside>
+
+      <button
+        id="back-to-top"
+        class="back-to-top hidden"
+        type="button"
+        aria-label="Volver arriba"
+        title="Volver arriba"
+      >
+        ↑
+      </button>
+    </main>
+
+    <script>
+      const practices = [
+        {
+          title: "Integración Nivel 1",
+          description:
+            "Primer acercamiento a la presencia y la respiración consciente.",
+          file: "audio/integracion-nivel-01.mp3",
+        },
+        {
+          title: "Integración Nivel 2",
+          description:
+            "Una pausa guiada para observar el cuerpo y sus sensaciones.",
+          file: "audio/integracion-nivel-02.mp3",
+        },
+        {
+          title: "Integración Nivel 3",
+          description: "Ejercicio de interiorización para volver al centro.",
+          file: "audio/integracion-nivel-03.mp3",
+        },
+        {
+          title: "Integración Nivel 4",
+          description: "Práctica meditativa de atención y escucha interior.",
+          file: "audio/integracion-nivel-04.mp3",
+        },
+        {
+          title: "Integración Nivel 5",
+          description:
+            "Cultiva quietud, sensibilidad y presencia en el momento.",
+          file: "audio/integracion-nivel-05.mp3",
+        },
+        {
+          title: "Integración Nivel 6",
+          description: "Una guía para profundizar en la observación de sí.",
+          file: "audio/integracion-nivel-06.mp3",
+        },
+        {
+          title: "Integración Nivel 7",
+          description: "Cierre de esta colección para integrar lo vivido.",
+          file: "audio/integracion-nivel-07.mp3",
+        },
+        {
+          title: "Integración Nivel 8",
+          description: "Espacio abierto para continuar la práctica interior.",
+          file: "audio/integracion-nivel-08.mp3",
+        },
+        {
+          title: "Integración Nivel 9",
+          description: "Atención serena y conexión con la dimensión mística.",
+          file: "audio/integracion-nivel-09.mp3",
+        },
+        {
+          title: "Integración Nivel 10",
+          description: "Una nueva invitación a meditar con profundidad.",
+          file: "audio/integracion-nivel-10.mp3",
+        },
+        {
+          title: "Integración Nivel 11",
+          description: "Práctica guiada para sostener la conciencia.",
+          file: "audio/integracion-nivel-11.mp3",
+        },
+        {
+          title: "Integración Nivel 12",
+          description: "Interiorización y presencia para tu camino diario.",
+          file: "audio/integracion-nivel-12.mp3",
+        },
+        {
+          title: "Integración Nivel 13",
+          description: "Una práctica más para entrar en silencio y atención.",
+          file: "audio/integracion-nivel-13.mp3",
+        },
+      ];
+
+      const cover = document.getElementById("cover");
+      const library = document.getElementById("library");
+      const practiceGrid = document.getElementById("practice-grid");
+      const playerView = document.getElementById("player-view");
+      const audioPlayer = document.getElementById("audio-player");
+      const playerTitle = document.getElementById("player-title");
+      const playerStatus = document.getElementById("player-status");
+      const backToTopButton = document.getElementById("back-to-top");
+      let currentPracticeIndex = -1;
+
+      const showLibrary = () => {
+        cover.classList.add("hidden");
+        library.classList.remove("hidden");
+        window.scrollTo(0, 0);
+      };
+
+      const showCover = () => {
+        audioPlayer.pause();
+        playerView.classList.add("hidden");
+        library.classList.add("hidden");
+        cover.classList.remove("hidden");
+        window.scrollTo(0, 0);
+      };
+
+      const playPractice = (practice, practiceIndex) => {
+        currentPracticeIndex = practiceIndex;
+        audioPlayer.src = encodeURI(practice.file);
+        playerTitle.textContent = practice.title;
+        playerStatus.textContent = "Reproduciendo práctica guiada";
+        playerView.classList.remove("hidden");
+        audioPlayer.play().catch(() => {
+          playerStatus.textContent = "Pulsa reproducir para comenzar";
+        });
+      };
+
+      practices.forEach((practice, index) => {
+        const card = document.createElement("article");
+        card.className = "practice-card";
+        card.innerHTML = `
+          <div>
+            <h3>${practice.title}</h3>
+            <p>No busques fuera, lo que dentro de ti se encuentra</p>
+          </div>
+          <div class="card-actions">
+            <button class="listen-button" type="button">Escuchar <span aria-hidden="true">▶</span></button>
+            <a class="download-button" href="${encodeURI(practice.file)}" download="integracion-nivel-${index + 1}.mp3" aria-label="Descargar ${practice.title}" title="Descargar audio">↓</a>
+          </div>`;
+        card
+          .querySelector(".listen-button")
+          .addEventListener("click", () => playPractice(practice, index));
+        practiceGrid.appendChild(card);
+      });
+
+      document
+        .getElementById("enter-button")
+        .addEventListener("click", showLibrary);
+      document
+        .getElementById("home-button")
+        .addEventListener("click", showCover);
+      document.querySelector(".brand").addEventListener("click", (event) => {
+        event.preventDefault();
+        showCover();
+      });
+      document.getElementById("close-player").addEventListener("click", () => {
+        audioPlayer.pause();
+        playerView.classList.add("hidden");
+      });
+      audioPlayer.addEventListener("play", () => {
+        playerStatus.textContent = "Reproduciendo práctica guiada";
+      });
+      audioPlayer.addEventListener("pause", () => {
+        playerStatus.textContent = "Audio en pausa";
+      });
+      audioPlayer.addEventListener("ended", () => {
+        const nextPracticeIndex = currentPracticeIndex + 1;
+        const nextPractice = practices[nextPracticeIndex];
+
+        if (nextPractice) {
+          playerStatus.textContent = "Preparando la siguiente práctica";
+          playPractice(nextPractice, nextPracticeIndex);
+          return;
+        }
+
+        playerStatus.textContent = "Has completado todas las prácticas";
+      });
+
+      window.addEventListener("scroll", () => {
+        backToTopButton.classList.toggle("hidden", window.scrollY < 400);
+      });
+      backToTopButton.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("sw.js").catch((error) => {
+          console.error("No se pudo activar el modo sin conexión:", error);
+        });
+      }
+    </script>
+  </body>
+</html>

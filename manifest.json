@@ -1,0 +1,10 @@
+{
+  "name": "Prácticas Esotéricas Gnósticas",
+  "short_name": "Prácticas Gnósticas",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f4f0e7",
+  "theme_color": "#183b3a",
+  "lang": "es",
+  "icons": []
+}
