@@ -1,4 +1,4 @@
-const CACHE_NAME = "practicas-gnosticas-v4";
+const CACHE_NAME = "practicas-gnosticas-v5";
 const APP_ASSETS = [
   "/",
   "/index.html",
@@ -16,6 +16,7 @@ const APP_ASSETS = [
   "/audio/integracion-nivel-11.mp3",
   "/audio/integracion-nivel-12.mp3",
   "/audio/integracion-nivel-13.mp3",
+  "/audio/meditacion con el padre nuestro.mp3",
 ];
 const CACHEABLE_EXTERNAL_ORIGINS = [
   "https://www.gstatic.com",

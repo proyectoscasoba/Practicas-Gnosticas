@@ -204,6 +204,12 @@
         color: var(--ink-soft);
         line-height: 1.55;
       }
+      .practice-card .practice-credit {
+        margin-top: 8px;
+        color: var(--saffron-dark);
+        font-size: 0.9rem;
+        font-style: italic;
+      }
       .card-actions {
         display: flex;
         align-items: center;
@@ -429,71 +435,73 @@
       const practices = [
         {
           title: "Integración Nivel 1",
-          description:
-            "Primer acercamiento a la presencia y la respiración consciente.",
+          credit: "V.M. Lakhsmi Daimon.",
           file: "audio/integracion-nivel-01.mp3",
         },
         {
           title: "Integración Nivel 2",
-          description:
-            "Una pausa guiada para observar el cuerpo y sus sensaciones.",
+          credit: "V.M. Lakhsmi Daimon.",
           file: "audio/integracion-nivel-02.mp3",
         },
         {
           title: "Integración Nivel 3",
-          description: "Ejercicio de interiorización para volver al centro.",
+          credit: "V.M. Lakhsmi Daimon.",
           file: "audio/integracion-nivel-03.mp3",
         },
         {
           title: "Integración Nivel 4",
-          description: "Práctica meditativa de atención y escucha interior.",
+          credit: "V.M. Lakhsmi Daimon.",
           file: "audio/integracion-nivel-04.mp3",
         },
         {
           title: "Integración Nivel 5",
-          description:
-            "Cultiva quietud, sensibilidad y presencia en el momento.",
+          credit: "V.M. Lakhsmi Daimon.",
           file: "audio/integracion-nivel-05.mp3",
         },
         {
           title: "Integración Nivel 6",
-          description: "Una guía para profundizar en la observación de sí.",
+          credit: "V.M. Lakhsmi Daimon.",
           file: "audio/integracion-nivel-06.mp3",
         },
         {
           title: "Integración Nivel 7",
-          description: "Cierre de esta colección para integrar lo vivido.",
+          credit: "V.M. Lakhsmi Daimon.",
           file: "audio/integracion-nivel-07.mp3",
         },
         {
           title: "Integración Nivel 8",
-          description: "Espacio abierto para continuar la práctica interior.",
+          credit: "V.M. Lakhsmi Daimon.",
           file: "audio/integracion-nivel-08.mp3",
         },
         {
           title: "Integración Nivel 9",
-          description: "Atención serena y conexión con la dimensión mística.",
+          credit: "V.M. Lakhsmi Daimon.",
           file: "audio/integracion-nivel-09.mp3",
         },
         {
           title: "Integración Nivel 10",
-          description: "Una nueva invitación a meditar con profundidad.",
+          credit: "V.M. Lakhsmi Daimon.",
           file: "audio/integracion-nivel-10.mp3",
         },
         {
           title: "Integración Nivel 11",
-          description: "Práctica guiada para sostener la conciencia.",
+          credit: "V.M. Lakhsmi Daimon.",
           file: "audio/integracion-nivel-11.mp3",
         },
         {
           title: "Integración Nivel 12",
-          description: "Interiorización y presencia para tu camino diario.",
+          credit: "V.M. Lakhsmi Daimon.",
           file: "audio/integracion-nivel-12.mp3",
         },
         {
           title: "Integración Nivel 13",
-          description: "Una práctica más para entrar en silencio y atención.",
+          credit: "V.M. Lakhsmi Daimon.",
           file: "audio/integracion-nivel-13.mp3",
+        },
+        {
+          title: "Meditación con el Padre Nuestro",
+          credit: "V.M. Lakhsmi Daimon.",
+          file: "audio/meditacion con el padre nuestro.mp3",
         },
       ];
 
@@ -538,7 +546,8 @@
         card.innerHTML = `
           <div>
             <h3>${practice.title}</h3>
-            <p>No busques fuera, lo que dentro de ti se encuentra</p>
+            <p>No busques fuera, lo que dentro de ti se encuentra.</p>
+            <p class="practice-credit">${practice.credit}</p>
           </div>
           <div class="card-actions">
             <button class="listen-button" type="button">Escuchar <span aria-hidden="true">▶</span></button>
