@@ -16,6 +16,9 @@ const APP_ASSETS = [
   "/audio/integracion-nivel-11.mp3",
   "/audio/integracion-nivel-12.mp3",
   "/audio/integracion-nivel-13.mp3",
+  "/audio/integracion 14.mp3",
+  "/audio/WhatsApp Audio 2026-09-15 at 1.36.05 PM.mp3",
+  "/audio/WhatsApp Audio 2026-09-15 at 1.39.45 PM.mp3",
   "/audio/meditacion con el padre nuestro.mp3",
 ];
 const CACHEABLE_EXTERNAL_ORIGINS = [
