@@ -17,7 +17,6 @@ const APP_ASSETS = [
   "/audio/integracion-nivel-12.mp3",
   "/audio/integracion-nivel-13.mp3",
   "/audio/WhatsApp Audio 2026-09-15 at 1.36.05 PM.mp3",
-  "/audio/WhatsApp Audio 2026-09-15 at 1.39.45 PM.mp3",
   "/audio/integracion-nivel-17.mp3",
   "/audio/integracion-nivel-18.mp3",
   "/audio/integracion-nivel-19.mp3",
