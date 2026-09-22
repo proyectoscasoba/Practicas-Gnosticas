@@ -1,4 +1,4 @@
-const CACHE_NAME = "practicas-gnosticas-v5";
+const CACHE_NAME = "practicas-gnosticas-v7";
 const APP_ASSETS = [
   "/",
   "/index.html",
@@ -16,10 +16,16 @@ const APP_ASSETS = [
   "/audio/integracion-nivel-11.mp3",
   "/audio/integracion-nivel-12.mp3",
   "/audio/integracion-nivel-13.mp3",
-  "/audio/integracion 14.mp3",
   "/audio/WhatsApp Audio 2026-09-15 at 1.36.05 PM.mp3",
   "/audio/WhatsApp Audio 2026-09-15 at 1.39.45 PM.mp3",
+  "/audio/integracion-nivel-17.mp3",
+  "/audio/integracion-nivel-18.mp3",
+  "/audio/integracion-nivel-19.mp3",
+  "/audio/integracion-nivel-20.mp3",
+  "/audio/meditar en el padre nuestro.mp3",
   "/audio/meditacion con el padre nuestro.mp3",
+  "/audio/practica-especial-de-ano-nuevo.mp3",
+  "/audio/trabajo-especial-con-el-cristo-lucifer.mp3",
 ];
 const CACHEABLE_EXTERNAL_ORIGINS = [
   "https://www.gstatic.com",
