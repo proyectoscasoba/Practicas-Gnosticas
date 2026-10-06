@@ -656,22 +656,76 @@
             <article class="information-item">
               <p class="information-number">01</p>
               <div>
-                <h3>Título 1</h3>
-                <p>Texto informativo pendiente.</p>
+                <h3>
+                  ¿Para quién está pensada esta biblioteca esotérica gnóstica?
+                </h3>
+                <p>
+                  Para todo inquieto buscador, amante de la verdad y de los
+                  misterios ocultos, no solo en los confines del inalterable e
+                  infinito universo exterior, sino también en la búsqueda
+                  interior de las profundidades de sí mismo, a través de la
+                  milenaria ciencia de la meditación interior profunda.
+                </p>
               </div>
             </article>
             <article class="information-item">
               <p class="information-number">02</p>
               <div>
-                <h3>Título 2</h3>
-                <p>Texto informativo pendiente.</p>
+                <h3>¿Qué tipo de prácticas encontrarás?</h3>
+                <p>
+                  Los audios son variados. La gran mayoría corresponde a
+                  fragmentos de convivencias en las que los Venerables Maestros
+                  Samael Aun Weor y Lakhsmi Daimon compartieron sus enseñanzas.
+                  En ellos hay momentos de integración, reflexión, oración y
+                  meditación que invitan al buscador a internarse en sí mismo y
+                  buscar su propio Ser Interior.
+                </p>
+                <p>
+                  También encontrarás audios y ejercicios específicos
+                  compartidos por otros hermanos durante convivencias
+                  especiales. Cada audio lleva un nombre basado en el tema
+                  principal tratado.
+                </p>
               </div>
             </article>
             <article class="information-item">
               <p class="information-number">03</p>
               <div>
-                <h3>Título 3</h3>
-                <p>Texto informativo pendiente.</p>
+                <h3>Nota importante</h3>
+                <p>
+                  Esta aplicación y su biblioteca no buscan competir con ninguna
+                  página oficial de la Santa Iglesia Gnóstica Cristiana
+                  Universal Samael Aun Weor Federada, ni con otros espacios de
+                  difusión de la Doctrina Gnóstica. El contenido aquí planteado
+                  es para toda la humanidad.
+                </p>
+              </div>
+            </article>
+            <article class="information-item">
+              <p class="information-number">04</p>
+              <div>
+                <h3>Uso de la aplicación</h3>
+                <p>
+                  Puedes descargar la aplicación en tu móvil y usarla sin
+                  conexión a internet después de preparar la biblioteca. También
+                  puedes descargar los audios. La reproducción continúa con el
+                  siguiente audio; puedes pausarla, cerrarla o elegir otro de la
+                  lista. Se recomienda escucharlos en secuencia lógica.
+                </p>
+              </div>
+            </article>
+            <article class="information-item">
+              <p class="information-number">05</p>
+              <div>
+                <h3>Contacto</h3>
+                <p>
+                  Para comunicarte con el responsable, aportar un audio o
+                  compartir una práctica que contribuya a este proyecto, puedes
+                  escribir a
+                  <a href="mailto:carlosasosab@gmail.com"
+                    >carlosasosab@gmail.com</a
+                  >.
+                </p>
               </div>
             </article>
           </div>
@@ -961,11 +1015,22 @@
       const backToTopButton = document.getElementById("back-to-top");
       let currentPracticeIndex = -1;
 
+      const updateBackToTopVisibility = () => {
+        const preparationVisible = !preparation.classList.contains("hidden");
+        const libraryVisible = !library.classList.contains("hidden");
+        const threshold = preparationVisible ? 240 : 400;
+        const shouldShow =
+          (preparationVisible || libraryVisible) && window.scrollY >= threshold;
+
+        backToTopButton.classList.toggle("hidden", !shouldShow);
+      };
+
       const showPreparation = () => {
         cover.classList.add("hidden");
         library.classList.add("hidden");
         preparation.classList.remove("hidden");
         window.scrollTo(0, 0);
+        updateBackToTopVisibility();
       };
 
       const showLibrary = () => {
@@ -973,6 +1038,7 @@
         preparation.classList.add("hidden");
         library.classList.remove("hidden");
         window.scrollTo(0, 0);
+        updateBackToTopVisibility();
       };
 
       const showCover = () => {
@@ -982,6 +1048,7 @@
         library.classList.add("hidden");
         cover.classList.remove("hidden");
         window.scrollTo(0, 0);
+        updateBackToTopVisibility();
       };
 
       const playPractice = (practice, practiceIndex) => {
@@ -1057,9 +1124,7 @@
         playerStatus.textContent = "Has completado todas las prácticas";
       });
 
-      window.addEventListener("scroll", () => {
-        backToTopButton.classList.toggle("hidden", window.scrollY < 400);
-      });
+      window.addEventListener("scroll", updateBackToTopVisibility);
       backToTopButton.addEventListener("click", () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
