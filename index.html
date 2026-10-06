@@ -485,27 +485,37 @@
           padding-left: 18px;
         }
         .photo-grid {
-          grid-template-areas:
-            "center center"
-            "left right";
-          grid-template-columns: repeat(2, minmax(0, 1fr));
+          grid-template-areas: "left center right";
+          grid-template-columns: repeat(3, minmax(0, 1fr));
           align-items: start;
-          gap: 16px 12px;
+          gap: 8px;
         }
         .photo-placeholder {
           min-height: 0;
-          padding: 12px 8px;
+          padding: 8px 4px;
         }
         .photo-slot-center .christ-image {
-          width: min(100%, 300px);
+          width: min(100%, 180px);
           margin: auto;
         }
         .photo-placeholder strong {
-          font-size: 1.05rem;
+          font-size: 0.82rem;
+          line-height: 1.15;
         }
         .photo-placeholder span,
         .photo-slot figcaption {
-          font-size: 0.68rem;
+          font-size: 0.62rem;
+          line-height: 1.25;
+        }
+        .photo-placeholder span {
+          margin-top: 4px;
+        }
+        .photo-slot figcaption {
+          padding-top: 6px;
+        }
+        .photo-source {
+          margin-top: 3px;
+          font-size: 0.58rem;
         }
         .preparation-header {
           margin-top: 38px;
@@ -592,14 +602,14 @@
                 alt="Icono de Jesús el Cristo Pantocrátor con la mano derecha levantada en gesto de bendición"
               />
               <figcaption>
-                Jesús el Cristo, Pantocrátor de Sinaí (siglo VI).
+                Jesús el Cristo
                 <span class="photo-source">
                   <a
                     href="https://commons.wikimedia.org/wiki/File:Spas_vsederzhitel_sinay.jpg"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Imagen de dominio público · Wikimedia Commons
+                    Wikimedia Commons · dominio público
                   </a>
                 </span>
               </figcaption>
