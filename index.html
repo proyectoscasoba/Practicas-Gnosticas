@@ -371,8 +371,8 @@
           <button id="enter-button" class="primary-button" type="button">
             Entrar a los audios <span aria-hidden="true">→</span>
           </button>
-          <p class="cover-note">
-            Disponible sin conexión después de la primera carga.
+          <p id="offline-status" class="cover-note" aria-live="polite">
+            Preparando los audios para escuchar sin conexión.
           </p>
         </div>
       </section>
@@ -736,9 +736,31 @@
       });
 
       if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("sw.js").catch((error) => {
-          console.error("No se pudo activar el modo sin conexión:", error);
+        navigator.serviceWorker.addEventListener("message", (event) => {
+          if (event.data?.type !== "AUDIO_CACHE_PROGRESS") return;
+
+          const { completed, failed, total, done } = event.data;
+          const offlineStatus = document.getElementById("offline-status");
+          if (!done) {
+            offlineStatus.textContent = `Preparando audios para escuchar sin conexión: ${completed} de ${total}.`;
+          } else if (failed) {
+            offlineStatus.textContent = `${total - failed} de ${total} audios disponibles sin conexión; conecta de nuevo para reintentar los restantes.`;
+          } else {
+            offlineStatus.textContent = "Biblioteca disponible sin conexión.";
+          }
         });
+
+        navigator.serviceWorker
+          .register("sw.js")
+          .then(async () => {
+            const registration = await navigator.serviceWorker.ready;
+            registration.active?.postMessage({ type: "CACHE_AUDIO_LIBRARY" });
+          })
+          .catch((error) => {
+            console.error("No se pudo activar el modo sin conexión:", error);
+            document.getElementById("offline-status").textContent =
+              "No se pudo preparar el modo sin conexión.";
+          });
       }
     </script>
   </body>

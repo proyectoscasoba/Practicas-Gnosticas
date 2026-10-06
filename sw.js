@@ -1,43 +1,40 @@
-const CACHE_NAME = "practicas-gnosticas-v10";
-const APP_ASSETS = [
-  "/",
-  "/index.html",
-  "/manifest.json",
-  "/audio/Asistencia de la Monada Divina.MP3",
-  "/audio/Cambio de Pareja.MP3",
-  "/audio/Culto a la Madre.MP3",
-  "/audio/El Divino Daimon y el Ego.MP3",
-  "/audio/El Estado Emocional y el Yo.MP3",
-  "/audio/El Negocio Piramidal.MP3",
-  "/audio/El Quinto Elemento.MP3",
-  "/audio/El Valor Exacto del Silencio.MP3",
-  "/audio/Huesped en el Corazon de Dios.MP3",
-  "/audio/Inspiracion Individual.MP3",
-  "/audio/Integracion con Dios.MP3",
-  "/audio/Integracion Natural.MP3",
-  "/audio/Integracion con Dios.MP3",
-  "/audio/La Comprension del YO Psi.MP3",
-  "/audio/La Recurrencia.MP3",
-  "/audio/Los Extraterrestres.MP3",
-  "/audio/Lucifer-Moises.MP3",
-  "/audio/Matrimonios.MP3",
-  "/audio/Meditacion con el Padre Nuestro.MP3",
-  "/audio/Meditar en el Padre Nuestro.MP3",
-  "/audio/Mensaje Juan Capasso.MP3",
-  "/audio/Mi Corazon los Distinque.MP3",
-  "/audio/Nada es Regalado.MP3",
-  "/audio/Oracion a la Divina Madre.MP3",
-  "/audio/Oracion de Curacion.MP3",
-  "/audio/Oracion Especial 1.MP3",
-  "/audio/Oracion Universal.MP3",
-  "/audio/Practica Especial de Año Nuevo.MP3",
-  "/audio/Practica con Lucifer.MP3",
-  "/audio/Regreso al Padre Interno.MP3",
-  "/audio/Sobre Los Maestros.MP3",
-  "/audio/Talisman Esoterico.MP3",
-  "/audio/Trabajo Especial con el Cristo Lucifer.MP3",
-  "/audio/Transcender la Recurrencia.MP3",
-  "/audio/Vencer al Diablo.MP3",
+const CACHE_NAME = "practicas-gnosticas-v11";
+const APP_SHELL = ["./", "index.html", "manifest.json"];
+const AUDIO_ASSETS = [
+  "audio/Asistencia de la Monada Divina.MP3",
+  "audio/Cambio de Pareja.MP3",
+  "audio/Culto a la Madre.MP3",
+  "audio/El Divino Daimon y el Ego.MP3",
+  "audio/El Estado Emocional y el Yo.MP3",
+  "audio/El Negocio Piramidal.MP3",
+  "audio/El Quinto Elemento.MP3",
+  "audio/El Valor Exacto del Silencio.MP3",
+  "audio/Huesped en el Corazon de Dios.MP3",
+  "audio/Inspiracion Individual.MP3",
+  "audio/Integracion con Dios.MP3",
+  "audio/Integracion Natural.MP3",
+  "audio/La Comprension del YO Psi.MP3",
+  "audio/La Recurrencia.MP3",
+  "audio/Los Extraterrestres.MP3",
+  "audio/Lucifer-Moises.MP3",
+  "audio/Matrimonios.MP3",
+  "audio/Meditacion con el Padre Nuestro.MP3",
+  "audio/Meditar en el Padre Nuestro.MP3",
+  "audio/Mensaje Juan Capasso.MP3",
+  "audio/Mi Corazon los Distinque.MP3",
+  "audio/Nada es Regalado.MP3",
+  "audio/Oracion a la Divina Madre.MP3",
+  "audio/Oracion de Curacion.MP3",
+  "audio/Oracion Especial 1.MP3",
+  "audio/Oracion Universal.MP3",
+  "audio/Practica Especial de Año Nuevo.MP3",
+  "audio/Practica con Lucifer.MP3",
+  "audio/Regreso al Padre Interno.MP3",
+  "audio/Sobre Los Maestros.MP3",
+  "audio/Talisman Esoterico.MP3",
+  "audio/Trabajo Especial con el Cristo Lucifer.MP3",
+  "audio/Transcender la Recurrencia.MP3",
+  "audio/Vencer al Diablo.MP3",
 ];
 const CACHEABLE_EXTERNAL_ORIGINS = [
   "https://www.gstatic.com",
@@ -48,7 +45,11 @@ const CACHEABLE_EXTERNAL_ORIGINS = [
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_ASSETS)),
+    caches.open(CACHE_NAME).then((cache) =>
+      cache.addAll(
+        APP_SHELL.map((asset) => new URL(asset, self.registration.scope).href),
+      ),
+    ),
   );
   self.skipWaiting();
 });
@@ -64,6 +65,57 @@ self.addEventListener("activate", (event) => {
     ),
   );
   self.clients.claim();
+});
+
+let audioCacheTask;
+
+const cacheAudioLibrary = async () => {
+  const cache = await caches.open(CACHE_NAME);
+  const clients = await self.clients.matchAll({
+    type: "window",
+    includeUncontrolled: true,
+  });
+  let completed = 0;
+  let failed = 0;
+
+  const report = (done = false) => {
+    const message = {
+      type: "AUDIO_CACHE_PROGRESS",
+      completed,
+      failed,
+      total: AUDIO_ASSETS.length,
+      done,
+    };
+    clients.forEach((client) => client.postMessage(message));
+  };
+
+  report();
+  for (const asset of AUDIO_ASSETS) {
+    const url = new URL(asset, self.registration.scope).href;
+    try {
+      if (!(await cache.match(url))) {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        await cache.put(url, response);
+      }
+    } catch {
+      failed += 1;
+    }
+    completed += 1;
+    report();
+  }
+  report(true);
+};
+
+self.addEventListener("message", (event) => {
+  if (event.data?.type !== "CACHE_AUDIO_LIBRARY") return;
+
+  if (!audioCacheTask) {
+    audioCacheTask = cacheAudioLibrary().finally(() => {
+      audioCacheTask = null;
+    });
+  }
+  event.waitUntil(audioCacheTask);
 });
 
 const getRangeResponse = async (request) => {
@@ -115,10 +167,16 @@ self.addEventListener("fetch", (event) => {
       fetch(event.request)
         .then((networkResponse) => {
           const responseCopy = networkResponse.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseCopy));
+          caches.open(CACHE_NAME).then((cache) =>
+            cache.put(event.request, responseCopy).catch(() => {}),
+          );
           return networkResponse;
         })
-        .catch(() => caches.match(event.request)),
+        .catch(async () => {
+          const cachedPage = await caches.match(event.request);
+          if (cachedPage) return cachedPage;
+          return caches.match(new URL("./", self.registration.scope));
+        }),
     );
     return;
   }
@@ -135,7 +193,9 @@ self.addEventListener("fetch", (event) => {
             CACHEABLE_EXTERNAL_ORIGINS.includes(requestOrigin))
         ) {
           const responseCopy = networkResponse.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseCopy));
+          caches.open(CACHE_NAME).then((cache) =>
+            cache.put(event.request, responseCopy).catch(() => {}),
+          );
         }
         return networkResponse;
       });
