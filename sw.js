@@ -1,5 +1,5 @@
-const CACHE_NAME = "practicas-gnosticas-v11";
-const APP_SHELL = ["./", "index.html", "manifest.json"];
+const CACHE_NAME = "practicas-gnosticas-v12";
+const APP_SHELL = ["./", "index.html", "manifest.json", "images/cristo-pantocrator-sinai.jpg"];
 const AUDIO_ASSETS = [
   "audio/Asistencia de la Monada Divina.MP3",
   "audio/Cambio de Pareja.MP3",

@@ -130,6 +130,147 @@
           0.84rem/1.5 Arial,
           sans-serif;
       }
+      .preparation {
+        min-height: 100vh;
+        padding-bottom: 56px;
+        background: var(--paper-light);
+      }
+      .preparation-main {
+        max-width: 1180px;
+        margin: auto;
+        padding: 18px 24px 0;
+      }
+      .photo-grid {
+        display: grid;
+        grid-template-areas: "left center right";
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.2fr) minmax(
+            0,
+            0.9fr
+          );
+        align-items: end;
+        gap: 24px;
+      }
+      .photo-slot {
+        min-width: 0;
+        margin: 0;
+      }
+      .photo-slot-left {
+        grid-area: left;
+      }
+      .photo-slot-center {
+        grid-area: center;
+      }
+      .photo-slot-right {
+        grid-area: right;
+      }
+      .photo-placeholder {
+        display: grid;
+        min-height: 220px;
+        aspect-ratio: 4 / 5;
+        place-items: center;
+        padding: 20px;
+        border: 1px solid var(--line);
+        background-color: #e6e7dc;
+        background-image:
+          linear-gradient(135deg, rgba(24, 59, 58, 0.08) 25%, transparent 25%),
+          linear-gradient(315deg, rgba(24, 59, 58, 0.08) 25%, transparent 25%);
+        background-position:
+          0 0,
+          14px 14px;
+        background-size: 28px 28px;
+        color: var(--ink-soft);
+        text-align: center;
+      }
+      .photo-placeholder strong,
+      .photo-placeholder span {
+        display: block;
+      }
+      .photo-placeholder strong {
+        font-size: 1.2rem;
+        font-weight: 400;
+        line-height: 1.25;
+      }
+      .photo-placeholder span {
+        margin-top: 8px;
+        font:
+          0.78rem/1.5 Arial,
+          sans-serif;
+      }
+      .photo-slot figcaption {
+        padding-top: 10px;
+        color: var(--ink-soft);
+        font:
+          0.78rem/1.4 Arial,
+          sans-serif;
+        text-align: center;
+      }
+      .christ-image {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        border: 1px solid var(--line);
+        background: #31534c;
+        object-fit: contain;
+      }
+      .photo-source {
+        display: block;
+        margin-top: 5px;
+        font-size: 0.7rem;
+      }
+      .photo-source a {
+        color: var(--ink-soft);
+      }
+      .preparation-header {
+        max-width: 820px;
+        margin: 52px auto 30px;
+      }
+      .preparation-header h2 {
+        margin: 0 0 14px;
+        font-size: clamp(2.4rem, 6vw, 4.6rem);
+        font-weight: 400;
+        line-height: 1;
+      }
+      .preparation-header > p:last-child {
+        max-width: 620px;
+        margin: 0;
+        color: var(--ink-soft);
+        font-size: 1.05rem;
+        line-height: 1.6;
+      }
+      .preparation-content {
+        max-width: 820px;
+        margin: auto;
+        border-top: 1px solid var(--line);
+      }
+      .information-item {
+        display: grid;
+        grid-template-columns: 52px minmax(0, 1fr);
+        gap: 14px;
+        padding: 24px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .information-number {
+        margin: 5px 0 0;
+        color: var(--saffron-dark);
+        font:
+          0.78rem Arial,
+          sans-serif;
+      }
+      .information-item h3 {
+        margin: 0 0 9px;
+        font-size: 1.55rem;
+        font-weight: 400;
+      }
+      .information-item p:last-child {
+        margin: 0;
+        color: var(--ink-soft);
+        line-height: 1.65;
+      }
+      .enter-audios {
+        display: flex;
+        justify-content: center;
+        padding: 38px 0 0;
+      }
       .library {
         min-height: 100vh;
         background: var(--paper-light);
@@ -339,6 +480,43 @@
           padding-left: 18px;
           padding-right: 18px;
         }
+        .preparation-main {
+          padding-right: 18px;
+          padding-left: 18px;
+        }
+        .photo-grid {
+          grid-template-areas:
+            "center center"
+            "left right";
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          align-items: start;
+          gap: 16px 12px;
+        }
+        .photo-placeholder {
+          min-height: 0;
+          padding: 12px 8px;
+        }
+        .photo-slot-center .christ-image {
+          width: min(100%, 300px);
+          margin: auto;
+        }
+        .photo-placeholder strong {
+          font-size: 1.05rem;
+        }
+        .photo-placeholder span,
+        .photo-slot figcaption {
+          font-size: 0.68rem;
+        }
+        .preparation-header {
+          margin-top: 38px;
+        }
+        .preparation-content {
+          padding: 0 18px;
+        }
+        .information-item {
+          grid-template-columns: 34px minmax(0, 1fr);
+          gap: 8px;
+        }
         .library-header {
           padding-top: 44px;
         }
@@ -364,17 +542,126 @@
           <p class="eyebrow">Un espacio de integración interior</p>
           <h1 id="cover-title">Biblioteca<br />Esotérica<br />Gnóstica</h1>
           <p class="cover-copy">
-            Audios guiados para la interiorización, la integración y la
+            Audios orientados para la interiorización, la integración y la
             meditación. Entra cuando quieras; cada audio está abierto para que
             sigas tu propio ritmo.
           </p>
-          <button id="enter-button" class="primary-button" type="button">
-            Entrar a los audios <span aria-hidden="true">→</span>
+          <button id="before-start-button" class="primary-button" type="button">
+            Antes de comenzar... <span aria-hidden="true">→</span>
           </button>
           <p id="offline-status" class="cover-note" aria-live="polite">
             Preparando los audios para escuchar sin conexión.
           </p>
         </div>
+      </section>
+
+      <section
+        id="preparation"
+        class="preparation hidden"
+        aria-labelledby="preparation-title"
+      >
+        <nav class="topbar" aria-label="Navegación de información previa">
+          <a class="brand" href="#cover" id="preparation-brand">PEG</a>
+          <button
+            id="preparation-home-button"
+            class="back-button"
+            type="button"
+          >
+            ← Volver a portada
+          </button>
+        </nav>
+        <main class="preparation-main">
+          <div class="photo-grid" aria-label="Fotografías de presentación">
+            <figure class="photo-slot photo-slot-left">
+              <div
+                class="photo-placeholder"
+                role="img"
+                aria-label="Espacio reservado para la primera fotografía"
+              >
+                <div>
+                  <strong>Fotografía</strong>
+                  <span>Imagen pendiente</span>
+                </div>
+              </div>
+              <figcaption>Imagen pendiente</figcaption>
+            </figure>
+            <figure class="photo-slot photo-slot-center">
+              <img
+                class="christ-image"
+                src="images/cristo-pantocrator-sinai.jpg"
+                alt="Icono de Jesús el Cristo Pantocrátor con la mano derecha levantada en gesto de bendición"
+              />
+              <figcaption>
+                Jesús el Cristo, Pantocrátor de Sinaí (siglo VI).
+                <span class="photo-source">
+                  <a
+                    href="https://commons.wikimedia.org/wiki/File:Spas_vsederzhitel_sinay.jpg"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Imagen de dominio público · Wikimedia Commons
+                  </a>
+                </span>
+              </figcaption>
+            </figure>
+            <figure class="photo-slot photo-slot-right">
+              <div
+                class="photo-placeholder"
+                role="img"
+                aria-label="Espacio reservado para la segunda fotografía"
+              >
+                <div>
+                  <strong>Fotografía</strong>
+                  <span>Imagen pendiente</span>
+                </div>
+              </div>
+              <figcaption>Imagen pendiente</figcaption>
+            </figure>
+          </div>
+
+          <header class="preparation-header">
+            <p class="eyebrow">Orientación para el visitante</p>
+            <h2 id="preparation-title">Antes de comenzar</h2>
+            <p>
+              Información importante para acompañar tu recorrido por las
+              prácticas.
+            </p>
+          </header>
+
+          <div class="preparation-content">
+            <article class="information-item">
+              <p class="information-number">01</p>
+              <div>
+                <h3>Título 1</h3>
+                <p>Texto informativo pendiente.</p>
+              </div>
+            </article>
+            <article class="information-item">
+              <p class="information-number">02</p>
+              <div>
+                <h3>Título 2</h3>
+                <p>Texto informativo pendiente.</p>
+              </div>
+            </article>
+            <article class="information-item">
+              <p class="information-number">03</p>
+              <div>
+                <h3>Título 3</h3>
+                <p>Texto informativo pendiente.</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="enter-audios">
+            <button
+              id="enter-audio-button"
+              class="primary-button"
+              type="button"
+            >
+              Entrar a los Audios <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </main>
       </section>
 
       <section
@@ -640,6 +927,7 @@
       ];
 
       const cover = document.getElementById("cover");
+      const preparation = document.getElementById("preparation");
       const library = document.getElementById("library");
       const practiceGrid = document.getElementById("practice-grid");
       const playerView = document.getElementById("player-view");
@@ -649,8 +937,16 @@
       const backToTopButton = document.getElementById("back-to-top");
       let currentPracticeIndex = -1;
 
+      const showPreparation = () => {
+        cover.classList.add("hidden");
+        library.classList.add("hidden");
+        preparation.classList.remove("hidden");
+        window.scrollTo(0, 0);
+      };
+
       const showLibrary = () => {
         cover.classList.add("hidden");
+        preparation.classList.add("hidden");
         library.classList.remove("hidden");
         window.scrollTo(0, 0);
       };
@@ -658,6 +954,7 @@
       const showCover = () => {
         audioPlayer.pause();
         playerView.classList.add("hidden");
+        preparation.classList.add("hidden");
         library.classList.add("hidden");
         cover.classList.remove("hidden");
         window.scrollTo(0, 0);
@@ -696,15 +993,23 @@
       });
 
       document
-        .getElementById("enter-button")
+        .getElementById("before-start-button")
+        .addEventListener("click", showPreparation);
+      document
+        .getElementById("preparation-home-button")
+        .addEventListener("click", showCover);
+      document
+        .getElementById("enter-audio-button")
         .addEventListener("click", showLibrary);
       document
         .getElementById("home-button")
         .addEventListener("click", showCover);
-      document.querySelector(".brand").addEventListener("click", (event) => {
-        event.preventDefault();
-        showCover();
-      });
+      document
+        .querySelector("#library .brand")
+        .addEventListener("click", (event) => {
+          event.preventDefault();
+          showCover();
+        });
       document.getElementById("close-player").addEventListener("click", () => {
         audioPlayer.pause();
         playerView.classList.add("hidden");
