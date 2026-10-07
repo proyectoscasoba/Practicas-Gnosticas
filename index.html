@@ -111,6 +111,45 @@
         font-size: 1.18rem;
         line-height: 1.65;
       }
+      .release-notice {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 16px;
+        width: min(100%, 620px);
+        margin: -18px 0 28px;
+        padding: 14px 16px;
+        border: 1px solid rgba(228, 193, 139, 0.5);
+        border-left: 3px solid var(--saffron);
+        background: rgba(251, 250, 246, 0.1);
+      }
+      .release-notice p {
+        margin: 0;
+        color: #e9eee8;
+        font:
+          0.88rem/1.5 Arial,
+          sans-serif;
+      }
+      .release-notice strong {
+        display: block;
+        margin-bottom: 3px;
+        color: #f0cc91;
+        font-size: 0.94rem;
+      }
+      .release-dismiss {
+        min-height: 40px;
+        padding: 7px 11px;
+        border: 1px solid rgba(220, 232, 223, 0.5);
+        border-radius: 2px;
+        background: transparent;
+        color: #fbfaf6;
+        font:
+          0.76rem Arial,
+          sans-serif;
+      }
+      .release-dismiss:hover {
+        background: rgba(251, 250, 246, 0.12);
+      }
       .primary-button,
       .secondary-button {
         border: 0;
@@ -570,6 +609,20 @@
             meditación. Entra cuando quieras; cada audio está abierto para que
             sigas tu propio ritmo.
           </p>
+          <aside
+            id="release-notice"
+            class="release-notice hidden"
+            aria-label="Nueva actualización"
+            aria-live="polite"
+          >
+            <p>
+              <strong>Nueva actualización</strong>
+              Se agregó “La Obra es Imposible”, de V. M. Lakhsmi Daimon.
+            </p>
+            <button id="release-dismiss" class="release-dismiss" type="button">
+              Entendido
+            </button>
+          </aside>
           <button id="before-start-button" class="primary-button" type="button">
             Antes de comenzar... <span aria-hidden="true">→</span>
           </button>
@@ -1009,7 +1062,29 @@
       const playerTitle = document.getElementById("player-title");
       const playerStatus = document.getElementById("player-status");
       const backToTopButton = document.getElementById("back-to-top");
+      const releaseNotice = document.getElementById("release-notice");
       let currentPracticeIndex = -1;
+
+      const releaseNoticeVersion = "2026-10-07-la-obra-es-imposible";
+      const seenReleaseNoticeKey = "peg-seen-release-notice";
+      try {
+        if (
+          localStorage.getItem(seenReleaseNoticeKey) !== releaseNoticeVersion
+        ) {
+          releaseNotice.classList.remove("hidden");
+        }
+      } catch {
+        releaseNotice.classList.remove("hidden");
+      }
+
+      document
+        .getElementById("release-dismiss")
+        .addEventListener("click", () => {
+          try {
+            localStorage.setItem(seenReleaseNoticeKey, releaseNoticeVersion);
+          } catch {}
+          releaseNotice.classList.add("hidden");
+        });
 
       const updateBackToTopVisibility = () => {
         const preparationVisible = !preparation.classList.contains("hidden");
