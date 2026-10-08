@@ -12,12 +12,6 @@
     <title>Biblioteca Esotérica Gnóstica</title>
     <style>
       :root {
-        --ink: #183b3a;
-        --ink-soft: #42615d;
-        --paper: #f4f0e7;
-        --paper-light: #fbfaf6;
-        --saffron: #d18b45;
-        --saffron-dark: #a9652d;
         --line: #d8d8c9;
       }
       * {
@@ -617,7 +611,8 @@
           >
             <p>
               <strong>Nueva actualización</strong>
-              Se agregó “La Obra es Imposible”, de V. M. Lakhsmi Daimon.
+              Se agregaron “La Cultura Gnóstica de Eleuterio Martínez” y
+              “Practicad”, de V. M. Samael Aun Weor.
             </p>
             <button id="release-dismiss" class="release-dismiss" type="button">
               Entendido
@@ -920,6 +915,12 @@
           download: "La Comprension del YO Psi.MP3",
         },
         {
+          title: "La Cultura Gnóstica de Eleuterio Martínez",
+          credit: "Eleuterio Martínez.",
+          file: "audio/La Cultura Gnostica - Eleuterio Martinez.mp3",
+          download: "La Cultura Gnostica - Eleuterio Martinez.mp3",
+        },
+        {
           title: "La Obra es Imposible",
           credit: "V. M. Lakhsmi Daimon.",
           file: "audio/La Obra es Imposible.mp3",
@@ -1016,6 +1017,12 @@
           download: "Practica Especial de Año Nuevo.MP3",
         },
         {
+          title: "Practicad",
+          credit: "V. M. Samael Aun Weor.",
+          file: "audio/Practicad - V. M. Samael Aun Weor.mp3",
+          download: "Practicad - V. M. Samael Aun Weor.mp3",
+        },
+        {
           title: "Regreso al Padre Interno",
           credit: "V.M. Lakhsmi Daimon.",
           file: "audio/Regreso al Padre Interno.MP3",
@@ -1065,7 +1072,7 @@
       const releaseNotice = document.getElementById("release-notice");
       let currentPracticeIndex = -1;
 
-      const releaseNoticeVersion = "2026-10-07-la-obra-es-imposible";
+      const releaseNoticeVersion = "2026-10-08-practicad-y-cultura-gnostica";
       const seenReleaseNoticeKey = "peg-seen-release-notice";
       try {
         if (
@@ -1076,7 +1083,6 @@
       } catch {
         releaseNotice.classList.remove("hidden");
       }
-
       document
         .getElementById("release-dismiss")
         .addEventListener("click", () => {

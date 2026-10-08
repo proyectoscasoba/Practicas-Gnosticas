@@ -1,4 +1,4 @@
-const CACHE_NAME = "practicas-gnosticas-v18";
+const CACHE_NAME = "practicas-gnosticas-v19";
 const APP_SHELL = ["./", "index.html", "manifest.json", "images/cristo-pantocrator-sinai.jpg", "images/logos.jfif", "images/V. M. Lakhsmi Daimon.webp", "images/V. M. Samael Aun Weor.jpg"];
 const AUDIO_ASSETS = [
   "audio/Asistencia de la Monada Divina.MP3",
@@ -14,6 +14,7 @@ const AUDIO_ASSETS = [
   "audio/Integracion con Dios.MP3",
   "audio/Integracion Natural.MP3",
   "audio/La Comprension del YO Psi.MP3",
+  "audio/La Cultura Gnostica - Eleuterio Martinez.mp3",
   "audio/La Obra es Imposible.mp3",
   "audio/La Recurrencia.MP3",
   "audio/Los Extraterrestres.MP3",
@@ -29,6 +30,7 @@ const AUDIO_ASSETS = [
   "audio/Oracion Especial 1.MP3",
   "audio/Oracion Universal.MP3",
   "audio/Practica Especial de Año Nuevo.MP3",
+  "audio/Practicad - V. M. Samael Aun Weor.mp3",
   "audio/Practica con Lucifer.MP3",
   "audio/Regreso al Padre Interno.MP3",
   "audio/Sobre Los Maestros.MP3",
