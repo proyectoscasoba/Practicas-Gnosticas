@@ -611,8 +611,8 @@
           >
             <p>
               <strong>Nueva actualización</strong>
-              Se agregaron “La Cultura Gnóstica de Eleuterio Martínez” y
-              “Practicad”, de V. M. Samael Aun Weor.
+              Se agregaron “Mantram Belilin”, de V. M. Samael Aun Weor, y
+              “Poderoso Sahumerio de Limpieza”, de V. M. Lakhsmi Daimon.
             </p>
             <button id="release-dismiss" class="release-dismiss" type="button">
               Entendido
@@ -945,6 +945,12 @@
           download: "Lucifer-Moises.MP3",
         },
         {
+          title: "Mantram Belilin",
+          credit: "V. M. Samael Aun Weor.",
+          file: "audio/Mantram Belilin.mp3",
+          download: "Mantram Belilin.mp3",
+        },
+        {
           title: "Matrimonios",
           credit: "V.M. Lakhsmi Daimon.",
           file: "audio/Matrimonios.MP3",
@@ -1003,6 +1009,12 @@
           credit: "V.M. Lakhsmi Daimon.",
           file: "audio/Oracion Universal.MP3",
           download: "Oracion Universal.MP3",
+        },
+        {
+          title: "Poderoso Sahumerio de Limpieza",
+          credit: "V. M. Lakhsmi Daimon.",
+          file: "audio/Poderoso Sahumerio de Limpieza.mp3",
+          download: "Poderoso Sahumerio de Limpieza.mp3",
         },
         {
           title: "Práctica con Lucifer",
@@ -1072,7 +1084,7 @@
       const releaseNotice = document.getElementById("release-notice");
       let currentPracticeIndex = -1;
 
-      const releaseNoticeVersion = "2026-10-08-practicad-y-cultura-gnostica";
+      const releaseNoticeVersion = "2026-10-09-mantram-y-sahumerio";
       const seenReleaseNoticeKey = "peg-seen-release-notice";
       try {
         if (
@@ -1083,6 +1095,7 @@
       } catch {
         releaseNotice.classList.remove("hidden");
       }
+
       document
         .getElementById("release-dismiss")
         .addEventListener("click", () => {
