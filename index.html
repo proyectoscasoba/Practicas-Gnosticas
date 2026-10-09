@@ -124,6 +124,16 @@
           0.88rem/1.5 Arial,
           sans-serif;
       }
+      .release-updates {
+        display: grid;
+        gap: 5px;
+        margin: 6px 0 0;
+        padding-left: 18px;
+        color: #e9eee8;
+        font:
+          0.84rem/1.45 Arial,
+          sans-serif;
+      }
       .release-notice strong {
         display: block;
         margin-bottom: 3px;
@@ -610,10 +620,9 @@
             aria-live="polite"
           >
             <p>
-              <strong>Nueva actualización</strong>
-              Se agregaron “Mantram Belilin”, de V. M. Samael Aun Weor, y
-              “Poderoso Sahumerio de Limpieza”, de V. M. Lakhsmi Daimon.
+              <strong>Novedades desde tu última visita</strong>
             </p>
+            <ul id="release-updates" class="release-updates"></ul>
             <button id="release-dismiss" class="release-dismiss" type="button">
               Entendido
             </button>
@@ -1084,12 +1093,44 @@
       const releaseNotice = document.getElementById("release-notice");
       let currentPracticeIndex = -1;
 
-      const releaseNoticeVersion = "2026-10-09-mantram-y-sahumerio";
-      const seenReleaseNoticeKey = "peg-seen-release-notice";
+      const releaseHistory = [
+        {
+          id: "2026-09-29-doce-audios",
+          text: "Se incorporaron 12 audios con títulos nuevos y se corrigió el título Meditación con el Padre Nuestro.",
+        },
+        {
+          id: "2026-10-07-la-obra-es-imposible",
+          text: "Se agregó el audio La Obra es Imposible.",
+        },
+        {
+          id: "2026-10-08-cultura-practicad",
+          text: "Se agregaron La Cultura Gnóstica de Eleuterio Martínez y Practicad.",
+        },
+        {
+          id: "2026-10-09-mantram-y-sahumerio",
+          text: "Se agregaron Mantram Belilin y Poderoso Sahumerio de Limpieza.",
+        },
+      ];
+      const seenReleaseNoticeKey = "peg-seen-release-id";
+      const previousReleaseNoticeKey = "peg-seen-release-notice";
+      const releaseList = document.getElementById("release-updates");
       try {
-        if (
-          localStorage.getItem(seenReleaseNoticeKey) !== releaseNoticeVersion
-        ) {
+        const previouslySeenId =
+          localStorage.getItem(seenReleaseNoticeKey) ||
+          localStorage.getItem(previousReleaseNoticeKey);
+        const seenIndex = releaseHistory.findIndex(
+          (release) => release.id === previouslySeenId,
+        );
+        const pendingReleases =
+          seenIndex < 0 ? releaseHistory : releaseHistory.slice(seenIndex + 1);
+
+        pendingReleases.forEach((release) => {
+          const item = document.createElement("li");
+          item.textContent = release.text;
+          releaseList.appendChild(item);
+        });
+
+        if (pendingReleases.length) {
           releaseNotice.classList.remove("hidden");
         }
       } catch {
@@ -1100,7 +1141,10 @@
         .getElementById("release-dismiss")
         .addEventListener("click", () => {
           try {
-            localStorage.setItem(seenReleaseNoticeKey, releaseNoticeVersion);
+            const latestReleaseId =
+              releaseHistory[releaseHistory.length - 1].id;
+            localStorage.setItem(seenReleaseNoticeKey, latestReleaseId);
+            localStorage.removeItem(previousReleaseNoticeKey);
           } catch {}
           releaseNotice.classList.add("hidden");
         });
